@@ -48,3 +48,14 @@ def generate_iban():
 	iban += get_bank_code()
 	iban += generate_account_number()
 	return iban
+
+def get_category_code():
+	category_codes_file = 'category-codes.txt'
+	def random_line(afile):
+		with open(afile) as f:
+			line = next(f)
+			for num, aline in enumerate(f):
+				if random.randrange(num + 2): continue
+				line = aline
+			return line.rstrip()
+	return random_line(category_codes_file)
