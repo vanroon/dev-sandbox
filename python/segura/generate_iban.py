@@ -50,6 +50,8 @@ def generate_iban():
 	return iban
 
 def get_category_code():
+	import random
+
 	category_codes_file = 'category-codes.txt'
 	def random_line(afile):
 		with open(afile) as f:

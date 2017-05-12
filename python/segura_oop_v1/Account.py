@@ -30,6 +30,8 @@ class Account(object):
 		pass
 
 class SelfAccount(Account):
+	__metaclass__ = IterRegistry
+	_registry = []
 	
 	def account_type(self):
 		return 'self'
@@ -38,9 +40,9 @@ class CrossAccount(Account):
 	
 	def account_type(self):
 		return 'cross'
+
+
 class Transaction(object):
-	__metaclass__ = IterRegistry
-	_registry = []
 	
 	def __init__(self, SelfAccount, CrossAccount, amount):
 		"""Returns a new transaction"""
@@ -56,7 +58,7 @@ class Transaction(object):
 class Piggy(object):
 	__metaclass__ = IterRegistry
 	_registry = []
-	"""A Pigge (bank) consists of a set of transaction that fall under one category_code"""
+	"""A Piggy (bank) consists of a set of transaction that fall under one category_code"""
 
 	def __init__(self, category_code, Transaction):
 		self.category_code = category_code
@@ -65,6 +67,27 @@ class Piggy(object):
 	# getBalance will returns the sum of a given set of transactions
 	def getBalance(category_code):
 		total = 0
+		sql = "SELECT SUM(amount) FROM tblRabobankMaster WHERE description = '%s';" % category_code
+		db_file = 'segura.db'
+	
+		import sqlite3
+		from sqlite3 import Error
+	
+		try:
+			conn = sqlite3.connect(db_file)
+			return conn
+		except Error as e:
+			print(e)
+
+		cur = conn.cursor()
+		cur.execute(sql)
+
+		rows = cur.fetchall()
+		for row in rows:
+			print (row)
+			
+		execute_sql(sql, database)
+
 
 
 
