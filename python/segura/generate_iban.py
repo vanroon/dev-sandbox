@@ -61,3 +61,28 @@ def get_category_code():
 				line = aline
 			return line.rstrip()
 	return random_line(category_codes_file)
+
+def get_category_code_and_debcred():
+	import random
+
+	category_codes_file = 'category-codes.txt'
+	def random_line(afile):
+		with open(afile) as f:
+			line = next(f)
+			for num, aline in enumerate(f):
+				if random.randrange(num + 2): continue
+				line = aline
+			return line.rstrip()
+
+	def set_debcred(category_code):
+		first_number = int(category_code[0])
+		if first_number > 1:
+			debcred = 'C'
+		else:
+			debcred = 'D'
+		return debcred
+		
+
+	category_code = random_line(category_codes_file)
+	debcred = set_debcred(category_code)
+	return category_code, debcred

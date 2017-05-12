@@ -15,20 +15,25 @@ segura_db = 'segura.db'
 
 def insert_transactions(num):
 	from generate_iban import generate_iban
-	from generate_iban import get_category_code
+	from generate_iban import get_category_code_and_debcred
+
+
 
 	con = lite.connect(segura_db)
 	with con:
 		cur = con.cursor()
 		for x in range(1, num):
 			selfAccount_val = 'NL44RABO0123456789'
-			amount = random.randrange(1, 100, 5)
+			amount = 20 #random.randrange(1, 100, 5)
 			crossAccount_val = generate_iban()
-			description_val = get_category_code()
-			if int(description_val[0]) > 2:
-				debcred = 'D'
-			else:
-				debcred = 'C'
+			category_code, debcred = get_category_code_and_debcred()
+
+#			description_val = get_category_code()
+#
+#			if int(description_val[0]) > 2:
+#				debcred = 'D'
+#			else:
+#				debcred = 'C'
 			sql = "INSERT INTO \
 				tblRabobankMaster ( \
 					selfAccount, \
@@ -42,7 +47,7 @@ def insert_transactions(num):
 					'%s', \
 					'%s', \
 					'%s' \
-				)" % (selfAccount_val, amount, crossAccount_val, debcred, description_val)
+				)" % (selfAccount_val, amount, crossAccount_val, debcred, category_code)
 					
 			cur.execute(sql)
 
