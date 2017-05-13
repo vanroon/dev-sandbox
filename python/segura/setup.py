@@ -16,6 +16,7 @@ segura_db = 'segura.db'
 def insert_transactions(num):
 	from generate_iban import generate_iban
 	from generate_iban import get_category_code_and_debcred
+	from generate_iban import get_category_code
 
 
 
@@ -24,9 +25,12 @@ def insert_transactions(num):
 		cur = con.cursor()
 		for x in range(1, num):
 			selfAccount_val = 'NL44RABO0123456789'
+			currency = 'EUR'
+			processDate = '01-01-2017'
 			amount = 20 #random.randrange(1, 100, 5)
 			crossAccount_val = generate_iban()
-			category_code, debcred = get_category_code_and_debcred()
+			category_code = get_category_code()
+			debcred = 'D'
 
 #			description_val = get_category_code()
 #
@@ -37,17 +41,21 @@ def insert_transactions(num):
 			sql = "INSERT INTO \
 				tblRabobankMaster ( \
 					selfAccount, \
+					currency, \
+					processDate, \
+					debcred, \
 					amount, \
 					crossAccount, \
-					debcred, \
-					description \
+					description1 \
 				) VALUES (	\
 				 	'%s', \
+					'%s', \
 					%s, \
 					'%s', \
+					%s, \
 					'%s', \
 					'%s' \
-				)" % (selfAccount_val, amount, crossAccount_val, debcred, category_code)
+				)" % (selfAccount_val, currency, processDate, debcred, amount, crossAccount_val, category_code)
 					
 			cur.execute(sql)
 
@@ -63,5 +71,5 @@ def create_tables(sqlfile, dbfile):
 	with con:
 		cur = con.cursor()
 		cur.executescript(data)
-create_tables('segura.sql', 'segura.db')
+create_tables('segura2.sql', 'segura2.db')
 insert_transactions(150)
