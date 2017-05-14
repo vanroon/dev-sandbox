@@ -20,7 +20,7 @@ transactionReference VARCHAR(200),
 incassantId VARCHAR(50),
 kenmerkMachtiging VARCHAR (50));
 
-DROP VIEW IF EXISTS vwChecking
+DROP VIEW IF EXISTS vwChecking;
 CREATE VIEW vwChecking AS
 SELECT
     tblMaster.selfAccount,
