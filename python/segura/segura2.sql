@@ -37,10 +37,10 @@ SELECT
     tblMaster.crossAccountHolder,
     tblMaster.interestDate,
     tblMaster.typ,
-    IFNULL(tblMaster.description1, "") +
-    IFNULL(tblMaster.description2, "") +
-    IFNULL(tblMaster.description3, "") +
-    IFNULL(tblMaster.description4, "") AS description,
+    IFNULL(tblMaster.description1, '') ||
+    IFNULL(tblMaster.description2, '') ||
+    IFNULL(tblMaster.description3, '') ||
+    IFNULL(tblMaster.description4, '') AS description,
     tblMaster.id
 FROM tblMaster
 

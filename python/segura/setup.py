@@ -11,7 +11,7 @@ import sqlite3 as lite
 import sys
 import random
 
-segura_db = 'segura.db'
+segura_db = 'segura2.db'
 
 def insert_transactions(num):
 	from generate_iban import generate_iban
@@ -27,11 +27,16 @@ def insert_transactions(num):
 			selfAccount_val = 'NL44RABO0123456789'
 			currency = 'EUR'
 			processDate = '01-01-2017'
-			amount = 20 #random.randrange(1, 100, 5)
+			amount = random.randrange(1, 100, 5)
 			crossAccount_val = generate_iban()
 			category_code = get_category_code()
-			debcred = 'D'
-
+			description2 = "some piece of text and fir"
+			description3 = "st part of word "
+#			debcred = category_code[0]
+			if category_code[:1] == '1':
+				debcred = 'C'
+			else:
+				debcred = 'D'
 #			description_val = get_category_code()
 #
 #			if int(description_val[0]) > 2:
@@ -39,23 +44,27 @@ def insert_transactions(num):
 #			else:
 #				debcred = 'C'
 			sql = "INSERT INTO \
-				tblRabobankMaster ( \
+				tblMaster ( \
 					selfAccount, \
 					currency, \
 					processDate, \
 					debcred, \
 					amount, \
 					crossAccount, \
-					description1 \
+					description1, \
+					description2, \
+					description3 \
 				) VALUES (	\
 				 	'%s', \
 					'%s', \
-					%s, \
 					'%s', \
-					%s, \
+					'%s', \
+					%d, \
+					'%s', \
+					'%s', \
 					'%s', \
 					'%s' \
-				)" % (selfAccount_val, currency, processDate, debcred, amount, crossAccount_val, category_code)
+				)" % (selfAccount_val, currency, processDate, debcred, amount, crossAccount_val, category_code, description2, description3)
 					
 			cur.execute(sql)
 
