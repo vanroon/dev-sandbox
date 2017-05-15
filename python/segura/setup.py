@@ -80,5 +80,18 @@ def create_tables(sqlfile, dbfile):
 	with con:
 		cur = con.cursor()
 		cur.executescript(data)
+
+class piggy(object):
+	def __init__(self, name):
+		self.name = name
+
+	
+	def getName():
+		return name
+
+
+
 create_tables('segura2.sql', 'segura2.db')
 insert_transactions(150)
+a = piggy('104-1 moto')
+print a.getName()
