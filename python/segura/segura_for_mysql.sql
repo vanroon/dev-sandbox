@@ -1,12 +1,11 @@
-DROP DATABASE IF EXISTS SEGURA;
-CREATE DATABASE SEGURA;
 DROP TABLE IF EXISTS tblMaster;
-CREATE TABLE tblMaster (id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+CREATE TABLE tblMaster (id INTEGER PRIMARY KEY AUTO_INCREMENT,
 selfAccount VARCHAR(50) NOT NULL,
 currency VARCHAR(10) NOT NULL,
 processDate DATE NOT NULL,
 debcred VARCHAR(10) NOT NULL,
-amount REAL NOT NULL,
+amount NUMERIC(15,2) NOT NULL,
 crossAccount VARCHAR(50) NOT NULL,
 crossAccountHolder VARCHAR (100),
 interestDate DATE,
@@ -45,4 +44,4 @@ SELECT
     IFNULL(tblMaster.description4, '') AS description,
     tblMaster.id
 FROM tblMaster
-WHERE tblMaster.selfAccount = 'NL33RABO3152168691'
+WHERE tblMaster.selfAccount = 'NL33RABO3152168691';
