@@ -30,7 +30,8 @@ class Account(object):
 		pass
 
 class SelfAccount(Account):
-	__metaclass__ = IterRegistry
+#	__metaclass__ = IterRegistry
+	__metaclass__ = ABCMeta
 	_registry = []
 	
 	def account_type(self):
@@ -56,18 +57,42 @@ class Transaction(object):
 		self.description = description
 
 class Piggy(object):
-	__metaclass__ = IterRegistry
+	__metaclass__ = ABCMeta
+#	__metaclass__ = IterRegistry
 	_registry = []
 	"""A Piggy (bank) consists of a set of transaction that fall under one category_code"""
 
-	def __init__(self, category_code, Transaction):
+	def __init__(self, category_code, name):
+	# category code will come from file input
 		self.category_code = category_code
-		self.amount = Transaction.amount
+		self.name = name
+
+	def setPiggies(filename):
+		"""This method reads the piggyfile and creates piggy objects from that file. The file
+		contains a category code and a name. The default filename is piggies.txt"""	
+		import csv
+	
+		codes = []
+		names = []
+
+		with open(filename, 'r') as f:
+			reader = csv.reader(f, delimiter = '\t')
+			for code, name in reader:
+				codes.append(code)
+				names.append(name)
+		
+		i = 0	
+		piggies = []	
+		for code in codes:
+			piggies.append(Piggy(code, names[i]))
+			i += 1
+		print piggies						
+				
 
 	# getBalance will returns the sum of a given set of transactions
 	def getBalance(category_code):
 		total = 0
-		sql = "SELECT SUM(amount) FROM tblRabobankMaster WHERE description = '%s';" % category_code
+		sql = "SELECT SUM(amount) FROM tblMaster WHERE description LIKE '%s*';" % category_code
 		db_file = 'segura.db'
 	
 		import sqlite3
@@ -92,8 +117,25 @@ class Piggy(object):
 
 
 
-a = SelfAccount('NL44RABO1234567890')
-b = CrossAccount('SE32HAAS1932193210')
-print a.account_type()
-print b.account_type()
+def setPiggies(filename):
+	"""This method reads the piggyfile and creates piggy objects from that file. The file
+	contains a category code and a name. The default filename is piggies.txt"""	
+	import csv
 
+	codes = []
+	names = []
+	with open(filename, 'r') as f:
+		reader = csv.reader(f, delimiter = '\t')
+		for code, name in reader:
+			codes.append(code)
+			names.append(name)
+	
+			i = 0	
+			piggies = []	
+			for code in codes:
+				piggies.append(Piggy(code, names[i]))
+				i += 1
+'add new keys to dictionary:
+	http://stackoverflow.com/questions/1024847/add-new-keys-to-a-dictionary'
+'dynamically create instance of a class
+	http://stackoverflow.com/questions/31846508/dynamically-create-instances-of-a-class-python'

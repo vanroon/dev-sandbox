@@ -86,3 +86,4 @@ def get_category_code_and_debcred():
 	category_code = random_line(category_codes_file)
 	debcred = set_debcred(category_code)
 	return category_code, debcred
+
