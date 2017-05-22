@@ -57,8 +57,8 @@ SELECT
 	tblMaster.incassantId,
 	tblMaster.kenmerkMachtiging,
 	tblMaster.raboOriginal,
-	tblMaster.id,
-FROM tblMaster
+	tblMaster.id
+FROM tblMaster;
 
 
 DROP VIEW IF EXISTS vwSaving;
