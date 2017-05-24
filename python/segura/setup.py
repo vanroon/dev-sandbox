@@ -12,6 +12,7 @@ import sys
 import random
 
 segura_db = 'segura2.db'
+segura_sql = 'segura_for_sqlite3.sql'
 
 def insert_transactions(num):
 	from generate_iban import generate_iban
@@ -91,7 +92,7 @@ class piggy(object):
 
 
 
-create_tables('segura2.sql', 'segura2.db')
+create_tables(segura_sql, segura_db)
 insert_transactions(150)
 a = piggy('104-1 moto')
 print a.getName()
