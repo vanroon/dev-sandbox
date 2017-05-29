@@ -1,5 +1,7 @@
 python/sqlite/test.db 
 /home/ubuntu/workspace/dev-sandbox/python/segura/*.pyc
 /home/ubuntu/workspace/dev-sandbox/python/segura/*.db
-/home/evroon/DevOps/dev-sandbox/python/segura/*.csv
+/home/evroon/DevOps/dev-sandbox/python/segura/dump_no_id.csv
+/home/evroon/DevOps/dev-sandbox/python/segura/dump_no_id_bit_test.csv
+/home/evroon/DevOps/dev-sandbox/python/segura/dump_no_id_pipe_sep.csv
 /home/evroon/DevOps/dev-sandbox/python/segura
