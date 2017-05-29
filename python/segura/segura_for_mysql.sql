@@ -62,7 +62,7 @@ SELECT
 	tblMaster.id,
 	tblTransactionCategoryCodeMapping.categoryCode
 FROM tblMaster
-INNER JOIN tblTransactionCategoryCodeMapping ON tblMaster.id=tblTransactionCategoryCodeMapping.masterId;
+LEFT JOIN tblTransactionCategoryCodeMapping ON tblMaster.id=tblTransactionCategoryCodeMapping.masterId;
 
 
 DROP VIEW IF EXISTS vwSaving;

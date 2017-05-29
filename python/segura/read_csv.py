@@ -4,7 +4,7 @@ import MySQLdb
 
 #Use this file to import a csv dump (pipe-separated) from MSSQL Segura DB
 
-mydb = MySQLdb.connect(host='localhost', user='root', passwd='TMNS2016', db='SEGURA')
+mydb = MySQLdb.connect(host='localhost', user='root', db='SEGURA')
 cursor = mydb.cursor()
 
 #Load all data from csv file in a variable
