@@ -1,5 +1,6 @@
 CREATE DATABASE IF NOT EXISTS SEGURA;
 USE SEGURA;
+DROP TABLE IF EXISTS tblBiznizRulez;
 DROP TABLE IF EXISTS tblTransactionCategoryCodeMapping;
 DROP TABLE IF EXISTS tblMaster;
 
@@ -26,7 +27,6 @@ kenmerkMachtiging VARCHAR (50),
 raboOriginal TINYINT(1) DEFAULT 1,
 PRIMARY KEY (id));
 
-DROP TABLE IF EXISTS tblTransactionCategoryCodeMapping;
 CREATE TABLE tblTransactionCategoryCodeMapping (
 id INT NOT NULL AUTO_INCREMENT,
 masterId INT NOT NULL,
@@ -34,6 +34,12 @@ categoryCode VARCHAR(10) NOT NULL,
 notes TEXT,
 PRIMARY KEY (id),
 FOREIGN KEY (masterId) REFERENCES tblMaster(id));
+
+CREATE TABLE tblBiznizRulez (
+id INT NOT NULL AUTO_INCREMENT,
+categoryCode VARCHAR(10) NOT NULL,
+category VARCHAR(255) NOT NULL,
+PRIMARY KEY (id));
 
 DROP VIEW IF EXISTS vwMaster;
 CREATE VIEW vwMaster AS
@@ -100,15 +106,20 @@ FROM vwMaster
 WHERE vwMaster.selfAccount = 'NL44INGB1234567890';
 
 
-INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL33RABO1234567890', 'EUR', '2017-01-01', 'D', 132, 'SE32haas19321932', '103-1, sparen');
-INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL33RABO1234567890', 'EUR', '2017-01-02', 'D', 132, 'SE32haas19321932', '201-4, sparen');
-INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL33RABO1234567890', 'EUR', '2017-01-03', 'C', 28, 'SE32haas19321932', '301,4, sparen');
-INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL44INGB1234567890', 'EUR', '2017-01-04', 'C', 122, 'SE32haas19321932', '404-1, sparen');
-INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL44INGB1234567890', 'EUR', '2017-01-05', 'C', 122, 'SE32haas19321932', '404-1, sparen');
-INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1, description4) VALUES ('NL44INGB1234567890', 'EUR', '2017-01-06', 'D', 92, 'SE32haas19321932', 'Motor 401-1', ' 4th description field!');
-INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (1, '103-1', 'some notes');
-INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (2, '201-4', 'some notes');
-INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (3, '301-4', 'some notes');
-INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (4, '404-1', 'some notes');
-INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (5, '404-1', 'some notes');
-INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (6, '401-1', 'some notes');
+INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL33RABO1234567890', 'EUR', '2017-01-01', 'D', 132, 'SE32haas19321932', '103-0, sparen');
+INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL33RABO1234567890', 'EUR', '2017-01-02', 'D', 132, 'SE32haas19321932', '104-1, Two wheeler');
+INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL33RABO1234567890', 'EUR', '2017-01-03', 'C', 28, 'SE32haas19321932', '105-2, electronics');
+INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL44INGB1234567890', 'EUR', '2017-01-04', 'C', 122, 'SE32haas19321932', '103-1, sparen');
+INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL44INGB1234567890', 'EUR', '2017-01-05', 'C', 122, 'SE32haas19321932', '103-5, EV');
+INSERT INTO tblMaster (selfAccount, currency, processDate, debcred, amount, crossAccount, description1, description4) VALUES ('NL44INGB1234567890', 'EUR', '2017-01-06', 'D', 92, 'SE32haas19321932', 'Two wheeler 104-1', ' 4th description field!');
+INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (1, '103-0', 'some notes');
+INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (2, '104-1', 'some notes');
+INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (3, '105-2', 'some notes');
+INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (4, '103-1', 'some notes');
+INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (5, '103-5', 'some notes');
+INSERT INTO tblTransactionCategoryCodeMapping (masterId, categoryCode, notes) VALUES (6, '104-1', 'some notes');
+INSERT INTO tblBiznizRulez (categoryCode, category) VALUES ('103-0', 's_long_term'); 
+INSERT INTO tblBiznizRulez (categoryCode, category) VALUES ('104-1', 's_long_term'); 
+INSERT INTO tblBiznizRulez (categoryCode, category) VALUES ('105-2', 's_long_term'); 
+INSERT INTO tblBiznizRulez (categoryCode, category) VALUES ('103-1', 's_long_term'); 
+INSERT INTO tblBiznizRulez (categoryCode, category) VALUES ('103-5', 's_long_term'); 
