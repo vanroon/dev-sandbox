@@ -4,11 +4,11 @@ import MySQLdb
 
 #Use this file to import a csv dump (pipe-separated) from MSSQL Segura DB
 
-mydb = MySQLdb.connect(host='localhost', user='root', db='SEGURA')
+mydb = MySQLdb.connect(host='localhost', user='root', db='SEGURA', passwd='TMNS2016')
 cursor = mydb.cursor()
 
 #Load all data from csv file in a variable
-csv_data = csv.reader(file('dump_no_id_pipe_sep.csv'), delimiter='|')
+csv_data = csv.reader(file('dump_transactions.txt'), delimiter=',')
 for row in csv_data:
 
 #The if statement below was to cut a decimal to only 2 digits after the point. 
@@ -17,7 +17,7 @@ for row in csv_data:
 	#		row[4] = row[4][0:row[4].find(',')+3] 
 
 #substitue ',' with '.'
-	row[4] = row[4].replace(',','.')
+#	row[4] = row[4].replace(',','.')
 
 	sql = 'INSERT INTO tblMaster(' \
 								'selfAccount, '\
