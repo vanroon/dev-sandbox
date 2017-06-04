@@ -12,6 +12,7 @@ cursor = mydb.cursor()
 
 #Load all data from csv file in a variable
 csv_data = csv.reader(file(dump_file), delimiter='|')
+
 for row in csv_data:
 
 #The if statement below was to cut a decimal to only 2 digits after the point. 
@@ -20,7 +21,7 @@ for row in csv_data:
 	#		row[4] = row[4][0:row[4].find(',')+3] 
 
 #substitue ',' with '.'
-	row[4] = row[4].replace(',','.')
+#	row[4] = row[4].replace(',','.')
 
 	sql = 'INSERT INTO tblMaster(' \
 								'selfAccount, '\
