@@ -1,14 +1,17 @@
 import csv
 import MySQLdb
 
+# files and databases
+dump_file = '/home/pi/stack/SEGURA/Rabobank/MSSQL_Dump/total_dump_20170602.csv'
+database = 'SEGURA'
 
 #Use this file to import a csv dump (pipe-separated) from MSSQL Segura DB
 
-mydb = MySQLdb.connect(host='localhost', user='root', db='SEGURA')
+mydb = MySQLdb.connect(host='localhost', user='root', db=database, passwd='root')
 cursor = mydb.cursor()
 
 #Load all data from csv file in a variable
-csv_data = csv.reader(file('dump_no_id_pipe_sep.csv'), delimiter='|')
+csv_data = csv.reader(file(dump_file), delimiter='|')
 for row in csv_data:
 
 #The if statement below was to cut a decimal to only 2 digits after the point. 

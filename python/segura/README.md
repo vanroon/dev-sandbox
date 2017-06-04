@@ -15,3 +15,7 @@ p
 *category_codes.txt* provides cateogry-codes used for creating test data
 *coutry_codes.txt* see description above
 
+Have the following:
+* python 2.x
+* python-dev
+* MySQLdb module
