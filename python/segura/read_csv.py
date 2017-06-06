@@ -21,7 +21,7 @@ for row in csv_data:
 	#		row[4] = row[4][0:row[4].find(',')+3] 
 
 #substitue ',' with '.'
-#	row[4] = row[4].replace(',','.')
+	row[4] = row[4].replace(',','.')
 
 	sql = 'INSERT INTO tblMaster(' \
 								'selfAccount, '\
@@ -42,7 +42,8 @@ for row in csv_data:
 								'unknown3, '\
 								'transactionReference,' \
 								'incassantId, ' \
-								'kenmerkMachtiging' \
+								'kenmerkMachtiging, ' \
+								'MssqlId' \
 							') VALUES (' \
 								'"%s", '\
 								'"%s", '\
@@ -62,14 +63,16 @@ for row in csv_data:
 								'"%s", '\
 								'"%s", '\
 								'"%s", '\
-								'"%s" '\
-								');' % (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18])
+								'"%s", '\
+								'%s' \
+								');' % (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19])
 	try:
 	
 		cursor.execute(sql)
 		print "success"
 	except:
 		print "got error!"
+		print row[19]
 	print sql
 mydb.commit()
 cursor.close()
