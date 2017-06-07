@@ -87,7 +87,7 @@ SELECT
     vwMaster.description,
     vwMaster.id,
     vwMaster.categoryCode,
-	vwMaster.MssqlId
+    vwMaster.MssqlId
 FROM vwMaster
 WHERE vwMaster.selfAccount = 'NL33RABO3152168691';
 
