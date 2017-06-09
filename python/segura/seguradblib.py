@@ -3,30 +3,34 @@ def getCursor():
 	
 	conn = MySQLdb.connect( host = 'localhost', \
 				user = 'root', \
-				db = 'SEGURA') 
-	return conn.cursor() 
+				db = 'SEGURA',
+				passwd = 'root') 
+	return conn 
 
 
 def insertIntoSegura(query):
 
 	import MySQLdb
+	import sys
 	
 	
-	cursor = getCursor()
-
+	conn = getCursor()
+	
+	cursor = conn.cursor()
 	try:
 		cursor.execute(query)
 	except:
-		print "got error", sys.exec_info()[0]
+		print "got error"
 	
-	mydb.commit()
-	cursor.close()
+	conn.commit()
+	conn.close()
 
 
 def selectFromSegura(query):
 	import MySQLdb
-	cursor = getCursor()
-	
+	conn = getCursor()
+	cursor = conn.cursor()	
+
 	try:
 		cursor.execute(query)
 		results = cursor.fetchall()

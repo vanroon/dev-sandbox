@@ -30,7 +30,7 @@ PRIMARY KEY (id));
 
 CREATE TABLE tblTransactionCategoryCodeMapping (
 id INT NOT NULL AUTO_INCREMENT,
-masterId INT NOT NULL,
+masterId INT NOT NULL UNIQUE,
 categoryCode VARCHAR(10) NOT NULL,
 notes TEXT,
 PRIMARY KEY (id),
