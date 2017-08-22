@@ -1,3 +1,6 @@
 python/sqlite/test.db 
 /home/ubuntu/workspace/dev-sandbox/python/segura/*.pyc
 /home/ubuntu/workspace/dev-sandbox/python/segura/*.db
+/home/evroon/DevOps/dev-sandbox/python/segura/segura_for_mysql_pi.sql
+**/MSSQL/**
+**/dump*.csv

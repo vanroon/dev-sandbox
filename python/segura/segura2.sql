@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS SEGURA;
+CREATE DATABASE SEGURA;
 DROP TABLE IF EXISTS tblMaster;
 CREATE TABLE tblMaster (id INTEGER PRIMARY KEY AUTOINCREMENT,
 selfAccount VARCHAR(50) NOT NULL,
@@ -43,5 +45,4 @@ SELECT
     IFNULL(tblMaster.description4, '') AS description,
     tblMaster.id
 FROM tblMaster
-
-
+WHERE tblMaster.selfAccount = 'NL33RABO3152168691'
