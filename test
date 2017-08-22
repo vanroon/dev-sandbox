@@ -1,0 +1,16 @@
+import csv
+directory = 'C:\\Users\\Erik\\stack\\SEGURA\\Rabobank\\masterCsv.csv'
+counter = 0
+line_dump = set()
+
+for line in open(directory, 'r'):
+    counter += 1
+    regel = '%s %s' % (counter, line.rstrip())
+    print regel
+    if line not in line_dump:
+        line_dump.add(line.rstrip())
+
+
+print line_dump
+print len(line_dump)
+print 'a'
