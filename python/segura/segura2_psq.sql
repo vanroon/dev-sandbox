@@ -1,6 +1,13 @@
--- Table: public."tblMaster"
+-- Table: public."tbl_master"
 
--- DROP TABLE public."tblMaster";
+DROP TABLE IF EXISTS public.tbl_master cascade;
+DROP TABLE IF EXISTS public.tbl_transaction_category_code_mapping CASCADE;
+DROP TABLE IF EXISTS public.tbl_bizniz_rulez CASCADE;
+drop VIEW IF EXISTS public.vw_master CASCADE;
+DROP VIEW IF EXISTS public.vw_checking CASCADE;
+DROP VIEW IF EXISTS public.vw_saving CASCADE;
+
+
 
 CREATE TABLE public.tbl_master
 (
@@ -28,7 +35,7 @@ CREATE TABLE public.tbl_master
     CONSTRAINT tbl_master_pkey PRIMARY KEY (id)
 );
 
--- Table: public."tblTransactionCategoryCodeMapping
+-- Table: public."tbl_transaction_category_code_mapping
 
 CREATE TABLE public.tbl_transaction_category_code_mapping
 (
@@ -112,3 +119,26 @@ select
     vw_master.categorycode
  FROM vw_master
  WHERE vw_master.selfAccount = 'NL44RABO1234567890';
+
+
+ --Example queries
+ 
+INSERT INTO tbl_master (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL33RABO1234567890', 'EUR', '2017-01-01', 'D', 132, 'SE32haas19321932', '103-0, sparen');
+INSERT INTO tbl_master (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL33RABO1234567890', 'EUR', '2017-01-02', 'D', 132, 'SE32haas19321932', '104-1, Two wheeler');
+INSERT INTO tbl_master (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL33RABO1234567890', 'EUR', '2017-01-03', 'C', 28, 'SE32haas19321932', '105-2, electronics');
+INSERT INTO tbl_master (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL44INGB1234567890', 'EUR', '2017-01-04', 'C', 122, 'SE32haas19321932', '103-1, sparen');
+INSERT INTO tbl_master (selfAccount, currency, processDate, debcred, amount, crossAccount, description1) VALUES ('NL44INGB1234567890', 'EUR', '2017-01-05', 'C', 122, 'SE32haas19321932', '103-5, EV');
+INSERT INTO tbl_master (selfAccount, currency, processDate, debcred, amount, crossAccount, description1, description4) VALUES ('NL44INGB1234567890', 'EUR', '2017-01-06', 'D', 92, 'SE32haas19321932', 'Two wheeler 104-1', ' 4th description field!');
+INSERT INTO tbl_transaction_category_code_mapping (masterId, categorycode, notes) VALUES (1, '103-0', 'some notes');
+INSERT INTO tbl_transaction_category_code_mapping (masterId, categorycode, notes) VALUES (2, '104-1', 'some notes');
+INSERT INTO tbl_transaction_category_code_mapping (masterId, categorycode, notes) VALUES (3, '105-2', 'some notes');
+INSERT INTO tbl_transaction_category_code_mapping (masterId, categorycode, notes) VALUES (4, '103-1', 'some notes');
+INSERT INTO tbl_transaction_category_code_mapping (masterId, categorycode, notes) VALUES (5, '103-5', 'some notes');
+INSERT INTO tbl_transaction_category_code_mapping (masterId, categorycode, notes) VALUES (6, '104-1', 'some notes');
+INSERT INTO tbl_bizniz_rulez (categorycode, categorycodedescription) VALUES ('103-0', 's_long_term');
+INSERT INTO tbl_bizniz_rulez (categorycode, categorycodedescription) VALUES ('104-1', 's_long_term');
+INSERT INTO tbl_bizniz_rulez (categorycode, categorycodedescription) VALUES ('105-2', 's_long_term');
+INSERT INTO tbl_bizniz_rulez (categorycode, categorycodedescription) VALUES ('103-1', 's_long_term');
+INSERT INTO tbl_bizniz_rulez (categorycode, categorycodedescription) VALUES ('103-5', 's_long_term');
+
+
