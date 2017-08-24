@@ -42,6 +42,12 @@ def writeNoDuplicatesSetToFile(noDuplicatesSet, noDuplicatesFile):
     f.close()
 
 
+def insertLinesInDatabase(noDuplicatesSet):
+    counter = 0
+    for line in noDuplicatesSet:
+        counter += 1
+        print '%s %s' % (counter, line)
+
 
 
 
@@ -58,6 +64,7 @@ def main():
         #print fileNumber
     noDuplicatesSet = removeDuplicatesFromMasterFile(masterCsvFileName)
     writeNoDuplicatesSetToFile(noDuplicatesSet, noDuplicatesMasterFile)
+    insertLinesInDatabase(noDuplicatesSet)
 
 main()
 
