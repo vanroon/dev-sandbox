@@ -74,12 +74,9 @@ def processFile(fileName):
 def getValueList(fileName):
 	valueList = list()
 	csv_data = csv.reader(file(fileName), delimiter=',')
-	for row in csv_data:
+#	for row in csv_data:
 
-	someList = list()
-	someList.append('aap')
-	someList.append('noot')
-	someList.append('mies')
+
 	return csv_data
 
 
@@ -93,9 +90,9 @@ def main():
 	password = 'password'
 	dumpFile = 'C:\\Users\\Erik\\stack\\SEGURA\\Rabobank\\noDuplicatesMasterCsv.csv'
 	cols = getColumnNames(tableName, dbname, user, host, password)
-	qry = constructInsertQuery(tableName, dbname, user, host, password, dumpFile)
+	#qry = constructInsertQuery(tableName, dbname, user, host, password, dumpFile)
 	#print cols
-	print qry
+#print qry
 
 main()
 
